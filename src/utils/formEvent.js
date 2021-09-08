@@ -1,6 +1,8 @@
 import { dateParser } from './dateParser.js';
+import { card } from '../components/card.js';
+import { setLocalStorage } from '../utils/localStorage.js'
 
-export default function formEvent() {
+export default function formEvent(todos, render) {
   console.log('form')
   const title = document.querySelector('.title');
   const form = document.querySelector('form');
@@ -9,9 +11,12 @@ export default function formEvent() {
     e.preventDefault()
     const obj = {
       title: title.value,
-      time: dateParser(),
+      date: dateParser(),
     }
-    console.log(obj)
+    
+    todos.push(card(obj))
+    setLocalStorage('todos', todos);
+    render();
   })
 }
 

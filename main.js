@@ -5,13 +5,13 @@ import { getLocalStorage } from './src/utils/localStorage.js';
 import { dateParser } from './src/utils/dateParser.js';
 
 let todos = [];
-let workings = [];
+// let workings = [];
 let dones = [];
 
 const root = document.querySelector('#root');
 function render() {
   todos = getLocalStorage('todos') || [];
-  workings = getLocalStorage('workings') || [];
+  // workings = getLocalStorage('workings') || [];
   dones = getLocalStorage('dones') || [];
 
   root.innerHTML = `
@@ -19,9 +19,15 @@ function render() {
   ${layout}
 `
   formEvent(todos, render)
-  dateParser(new Date(), 'YYYY-MM-DD HH:mm')
+  // dateParser(new Date(), 'YYYY-MM-DD HH:mm')
   const todoEl = document.querySelector('.todo ul');
   todoEl.innerHTML = todos.join('')
+
+  const deleteBtn = document.querySelectorAll('.delete');
+  deleteBtn.forEach(btn => btn.addEventListener('click', () => {
+    console.log(123)
+  }))
+
 }
 
 render()
